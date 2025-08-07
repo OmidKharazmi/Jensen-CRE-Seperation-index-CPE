@@ -187,18 +187,6 @@ plt.show()
 
 # Function to compute JCRE for a histogram
 def compute_JCRE_histogram(h, t, w):
-    h = h / np.sum(h)  # Normalize histogram to probabilities
-    p1 = h[:t]
-    p2 = h[t:]
-
-    # Normalize sub-histograms
-    p1 =p1 / np.sum(p1) if np.sum(p1) > 0 else p1
-    p2 =p2 / np.sum(p2) if np.sum(p2) > 0 else p2
-    ee =1e-10
-    # Compute terms
-    term_1 = w *len(p2)* np.sum([np.sum(p1[:s]) * np.log(np.sum(p1[:s]) + ee) for s in range(1, len(p1) + 1)])
-    term_2 = (1 - w) **len(p1)* np.sum([np.sum(p2[:r]) * np.log(np.sum(p2[:r]) + ee) for r in range(1, len(p2) + 1)])
-
     term_3 = 0
     for s in range(1, len(p1) + 1):
         for r in range(1, len(p2) + 1):
@@ -350,3 +338,4 @@ save_path_tt1 = "C:/Users/...."
 plt.savefig(save_path_tt1, format='png', dpi=300)
 print(f"Combined plot saved successfully at {save_path_tt1}")
 plt.show()
+
